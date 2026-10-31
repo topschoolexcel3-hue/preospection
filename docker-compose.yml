@@ -1,0 +1,16 @@
+services:
+  ledger:
+    build: .
+    container_name: ledger
+    restart: unless-stopped
+    environment:
+      - PORT=3000
+      - DATA_DIR=/data
+      - LEDGER_TOKEN=${LEDGER_TOKEN:?definissez LEDGER_TOKEN}
+    volumes:
+      - ledger-data:/data
+    expose:
+      - "3000"
+
+volumes:
+  ledger-data:
